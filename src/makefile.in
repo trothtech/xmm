@@ -155,6 +155,9 @@ xmmjava.h:	MessageService.class
 xmmjava.o:	xmmjava.c
 	cc -I. -I/usr/lib/jvm/java-1.8.0-openjdk/include -I/usr/lib/jvm/java-1.8.0-openjdk/include/linux -c xmmjava.c 
 
+libxmmjava.so:	xmmjava.o xmitmsgx.o
+	$(CC) $(LDFLAGS) -shared -o libxmmjava.so xmmjava.o xmitmsgx.o
+
 ########################################################################
 # COBOL support
 cobol:
@@ -208,6 +211,8 @@ install:        $(DELIVERABLES) xmitmsgx.msgs errno.msgs
 		cp -p xmitmsgx.msgs errno.msgs $(PREFIX)/share/locale/$(LOCALE)/.
 		cp -p xmitmivp.sh $(PREFIX)/sbin/.
 		cp -p xmitmivp.c $(PREFIX)/src/.
+#
+		cp -p xmmdemoc.c xmmdemoc.sh xmmrexx.rx xmmrexx.sh $(PREFIX)/src/.
 
 ########################################################################
 # RPM support
