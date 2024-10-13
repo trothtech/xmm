@@ -1,0 +1,311 @@
+*
+*
+*         Name: errno.en_US.msgs
+*               XMITMSGX message repository for ERRNO set in US English
+*       Author: Rick Troth, rogue programmer
+*         Date: 2017-Dec-01 (Fri)
+*
+* These messages were initially gathered from C headers on Linux,
+* which in turn includes C headers from GLIBC and other packages.
+* Additional messages gathered from C headers included with CYGWIN.
+*
+* The next line sets the token introducer.
+& 3
+* It also indicates default number of digits, which we ignore.
+*
+*nnnffllv mmmmmmmmmmmmmmmmmmmmmmmm...
+* We don't implement format numbers (ff) or line numbers (ll) but leave
+* those columns in this file for compatibility with the CMS impmenentation.
+   1    E EPERM, operation not permitted
+   2    E ENOENT, no such file or directory &1
+   3    E ESRCH, no such process
+   4    E EINTR, interrupted system call
+   5    E EIO, input/output error
+   6    E ENXIO, no such device or address or device not configured
+   7    E E2BIG, argument list too long
+   8    E ENOEXEC, executable file format error
+   9    E EBADF, bad file number
+  10    E ECHILD, no child processes
+  11    E EAGAIN, try the operation again, aka EWOULDBLOCK, the operation would block
+  12    E ENOMEM, not enough memory
+  13    E EACCES, permission denied
+  14    E EFAULT, bad address, memory segmentation fault
+  15    E ENOTBLK, block device required
+  16    E EBUSY, device or resource busy
+  17    E EEXIST, file exists
+  18    E EXDEV, cross-device link
+  19    E ENODEV, no such device
+  20    E ENOTDIR, argument is not a directory
+  21    E EISDIR, argument is a directory and should not be
+  22    E EINVAL, invalid parameter or argument
+  23    E ENFILE, file table overflow, too many open files in system
+  24    E EMFILE, too many open files in the system
+  25    E ENOTTY, not a character device (historically, not a typewriter). onappropriate ioctl() for device
+  26    E ETXTBSY, text file busy
+  27    E EFBIG, file too large
+  28    E ENOSPC, no space left on device
+  29    E ESPIPE, illegal seek
+  30    E EROFS, read-only file system
+  31    E EMLINK, too many links
+  32    E EPIPE, broken pipe
+  33    E EDOM, mathematics argument out of domain of function
+  34    E ERANGE, result too large, math result not representable
+  35    E EDEADLK, resource deadlock would occur; aka EDEADLOCK
+  36    E ENAMETOOLONG, file name or path name too long
+  37    E ENOLCK, no record locks available
+  38    E ENOSYS, function not implemented or invalid system call number
+  39    E ENOTEMPTY, directory not empty
+  40    E ELOOP, too many symbolik links encountered
+  41    E ELNRNG, link number out of range*
+  42    E ENOMSG, no message of desired type
+  43    E EIDRM, identifier removed
+  44    E ECHRNG, channel number out of range
+  45    E EL2NSYNC, level 2 not synchronized
+  46    E EL3HLT, level 3 halted
+  47    E EL3RST, level 3 reset
+  48    E ELNRNG, link number out of range
+  49    E EUNATCH, protocol driver not attached
+  50    E ENOCSI, no CSI structure available
+  51    E EL2HLT, level 2 halted
+  52    E EBADE, invalid exchange
+  53    E EBADR, invalid request descriptor
+  54    E EXFULL, exchange full
+  55    E ENOANO, no anode
+  56    E EBADRQC, invalid request code
+  57    E EBADSLT, invalid slot
+  58    I no error
+  59    E EBFONT, bad font file format
+  60    E ENOSTR, device or file is not a stream
+  61    E ENODATA, no data available (for no delay I/O)
+  62    E ETIME, timer expired or stream ioctl timeout
+  63    E ENOSR, out of stream resources
+  64    E ENONET, this machine is not on the network
+  65    E ENOPKG, package not installed
+  66    E EREMOTE, the object is remote or too many levels of remote in path
+  67    E ENOLINK, the virtual circuit link has been severed
+  68    E EADV, advertise error
+  69    E ESRMNT, srmount error
+  70    E ECOMM, communication error on send
+  71    E EPROTO, protocol error
+  72    E EMULTIHOP, multihop attempted
+  73    I EDOTDOT, RFS specific error or cross mount point
+  74    E EBADMSG, not a data message
+  75    E EOVERFLOW, value too large for defined data type
+  76    E ENOTUNIQ, name not unique on network
+  77    E EBADFD, file descriptor &1 is in a bad state or invalid for this operation
+  78    E EREMCHG, remote address changed
+  79    E ELIBACC, cannot access a needed shared library
+  80    E ELIBBAD, accessing corrupted shared library %1
+  81    E ELIBSCN, .lib section in a.out is corrupted
+  82    E ELIBMAX, attempting to link in too many shared libraries
+  83    E ELIBEXEC, cannot exec a shared library directly
+  84    E EILSEQ, illegal byte sequence
+  85    E ERESTART, interrupted system call should be restarted
+  86    E ESTRPIPE, streams pipe error
+  87    E EUSERS, too many users
+  88    E ENOTSOCK, attempted socket operation on non-socket
+  89    E EDESTADDRREQ, destination address required
+  90    E EMSGSIZE, message too long
+  91    E EPROTOTYPE, protocol is wrong type for socket
+  92    E ENOPROTOOPT, protocol not available
+  93    E EPROTONOSUPPORT, protocol not supported
+  94    E ESOCKTNOSUPPORT, socket type not supported
+  95    E EOPNOTSUPP, operation not supported on transport endpoint
+  96    E EPFNOSUPPORT, protocol family not supported
+  97    E EAFNOSUPPORT, address family not supported by protocol family
+  98    E EADDRINUSE, address already in use
+  99    E EADDRNOTAVAIL, cannot assign requested address, not available
+ 100    E ENETDOWN, network is down
+ 101    E ENETUNREACH, network is unreachable
+ 102    E ENETRESET, network dropped connection because of reset
+ 103    E ECONNABORTED, software caused connection abort
+ 104    E ECONNRESET, connection reset by peer
+ 105    E ENOBUFS, no buffer space available
+ 106    E EISCONN, transport endpoint is already connected
+ 107    E ENOTCONN, transport endpoint is not connected
+ 108    E ESHUTDOWN, cannot send after transport endpoint shutdown
+ 109    E ETOOMANYREFS, too many references: cannot splice
+ 110    E ETIMEDOUT, connection timed out
+ 111    E ECONNREFUSED, connection refused
+ 112    E EHOSTDOWN, host is down
+ 113    E EHOSTUNREACH, host is unreachable, no route to host
+ 114    E EALREADY, operation already in progress
+ 115    E EINPROGRESS, operation now in progress
+ 116    E ESTALE, stale NFS file handle
+ 117    E EUCLEAN, structure needs cleaning
+ 118    E ENOTNAM, not a XENIX named type file
+ 119    E ENAVAIL, no XENIX semaphores available
+ 120    E EISNAM, is a named type file
+ 121    E EREMOTEIO, remote I/O error
+ 122    E EDQUOT, quota exceeded
+ 123    E ENOMEDIUM, no medium found or no medium in drive
+ 124    E EMEDIUMTYPE, wrong medium type
+ 125    E ECANCELED, operation canceled
+ 126    E ENOKEY, required key not available
+ 127    E EKEYEXPIRED, key has expired
+ 128    E EKEYREVOKED, key has been revoked
+ 129    E EKEYREJECTED, key was rejected by service
+ 130    E EOWNERDEAD, previous owner died
+ 131    E ENOTRECOVERABLE, state not recoverable
+ 132    E ERFKILL, operation not possible due to RF-kill
+ 133    E EHWPOISON, memory page has a hardware error
+ 137    E ECASECLASH (CYGWIN), filename exists with different case
+ 138    E EILSEQ (CYGWIN), Illegal byte sequence
+ 139    E EOVERFLOW (CYGWIN), Value too large for defined data type
+ 140    E ECANCELED (CYGWIN), Operation canceled
+ 141    E ENOTRECOVERABLE (CYGWIN), State not recoverable
+ 142    E EOWNERDEAD (CYGWIN), Previous owner died
+ 143    E ESTRPIPE (CYGWIN), streams pipe error
+*
+ 512    E ERESTARTSYS
+ 513    E ERESTARTNOINTR
+ 514    E ERESTARTNOHAND, restart if no handler
+ 515    E ENOIOCTLCMD, no ioctl command
+ 516    E ERESTART_RESTARTBLOCK, restart by calling sys_restart_syscall()
+*
+ 521    E EBADHANDLE, illegal NFS file handle
+ 522    E ENOTSYNC, update synchronization mismatch
+ 523    E EBADCOOKIE, cookie is stale
+ 524    E ENOTSUPP, operation is not supported
+ 525    E ETOOSMALL, buffer or request is too small
+ 526    E ESERVERFAULT, an untranslatable error occurred
+ 527    E EBADTYPE, type not supported by server
+ 528    E EJUKEBOX, request initiated, but will not complete before timeout
+ 529    E EIOCBQUEUED, iocb queued, will get completion event
+ 530    E EIOCBRETRY, iocb queued, will trigger a retry
+*
+* FreeBSD variances
+* 11    E EDEADLK (FreeBSD), Resource deadlock avoided
+* 35    E EAGAIN (FreeBSD), Resource temporarily unavailable
+* 36    E EINPROGRESS (FreeBSD), Operation now in progress
+* 37    E EALREADY (FreeBSD), Operation already in progress
+* 38    E ENOTSOCK (FreeBSD), Socket operation on non-socket
+* 39    E EDESTADDRREQ (FreeBSD), Destination address required
+* 40    E EMSGSIZE (FreeBSD), Message too long
+* 41    E EPROTOTYPE (FreeBSD), Protocol wrong type for socket
+* 42    E ENOPROTOOPT (FreeBSD), Protocol not available
+* 43    E EPROTONOSUPPORT (FreeBSD), Protocol not supported
+* 44    E ESOCKTNOSUPPORT (FreeBSD), Socket type not supported
+* 45    E EOPNOTSUPP (FreeBSD), Operation not supported
+* 46    E EPFNOSUPPORT (FreeBSD), Protocol family not supported
+* 47    E EAFNOSUPPORT (FreeBSD), Address family not supported by protocol family
+* 48    E EADDRINUSE (FreeBSD), Address already in use
+* 49    E EADDRNOTAVAIL (FreeBSD), Can't assign requested address
+* 50    E ENETDOWN (FreeBSD), Network is down
+* 51    E ENETUNREACH (FreeBSD), Network is unreachable
+* 52    E ENETRESET (FreeBSD), Network dropped connection on reset
+* 53    E ECONNABORTED (FreeBSD), Software caused connection abort
+* 54    E ECONNRESET (FreeBSD), Connection reset by peer
+* 55    E ENOBUFS (FreeBSD), No buffer space available
+* 56    E EISCONN (FreeBSD), Socket is already connected
+* 57    E ENOTCONN (FreeBSD), Socket is not connected
+* 58    E ESHUTDOWN (FreeBSD), Can't send after socket shutdown
+* 59    E ETOOMANYREFS (FreeBSD), Too many references: can't splice
+* 60    E ETIMEDOUT (FreeBSD), Operation timed out
+* 61    E ECONNREFUSED (FreeBSD), Connection refused
+* 62    E ELOOP (FreeBSD), Too many levels of symbolic links
+* 63    E ENAMETOOLONG (FreeBSD), File name too long
+* 64    E EHOSTDOWN (FreeBSD), Host is down
+* 65    E EHOSTUNREACH (FreeBSD), No route to host
+* 66    E ENOTEMPTY (FreeBSD), Directory not empty
+* 67    E EPROCLIM (FreeBSD), Too many processes
+* 68    E EUSERS (FreeBSD), Too many users
+* 69    E EDQUOT (FreeBSD), Disc quota exceeded
+* 70    E ESTALE (FreeBSD), Stale NFS file handle
+* 71    E EREMOTE (FreeBSD), Too many levels of remote in path
+* 72    E EBADRPC (FreeBSD), RPC struct is bad
+* 73    E ERPCMISMATCH (FreeBSD), RPC version wrong
+* 74    E EPROGUNAVAIL (FreeBSD), RPC prog. not avail
+* 75    E EPROGMISMATCH (FreeBSD), Program version wrong
+* 76    E EPROCUNAVAIL (FreeBSD), Bad procedure for program
+* 77    E ENOLCK (FreeBSD), No locks available
+* 78    E ENOSYS (FreeBSD), Function not implemented
+* 79    E EFTYPE (FreeBSD), Inappropriate file type or format
+* 80    E EAUTH (FreeBSD), Authentication error
+* 81    E ENEEDAUTH (FreeBSD), Need authenticator
+* 82    E EIDRM (FreeBSD), Identifier removed
+* 83    E ENOMSG (FreeBSD), No message of desired type
+* 84    E EOVERFLOW (FreeBSD), Value too large to be stored in data type
+* 85    E ECANCELED (FreeBSD), Operation canceled
+* 86    E EILSEQ (FreeBSD), Illegal byte sequence
+* 87    E ENOATTR (FreeBSD), Attribute not found
+* 88    E EDOOFUS (FreeBSD), Programming error
+* 89    E EBADMSG (FreeBSD), Bad message
+* 90    E EMULTIHOP (FreeBSD), Multihop attempted
+* 91    E ENOLINK (FreeBSD), Link has been severed
+* 92    E EPROTO (FreeBSD), Protocol error
+* 93    E ENOTCAPABLE (FreeBSD), Capabilities insufficient
+* 94    E ECAPMODE (FreeBSD), Not permitted in capability mode
+* 95    E ENOTRECOVERABLE (FreeBSD), State not recoverable
+* 96    E EOWNERDEAD (FreeBSD), Previous owner died
+* 96    E ELAST (FreeBSD), Must be equal largest errno
+*
+* CYGWIN variances
+* 35    E ENOMSG (CYGWIN), No message of desired type
+* 36    E EIDRM (CYGWIN), Identifier removed
+* 37    E ECHRNG (CYGWIN), Channel number out of range
+* 38    E EL2NSYNC (CYGWIN), Level 2 not synchronized
+* 39    E EL3HLT (CYGWIN), Level 3 halted
+* 40    E EL3RST (CYGWIN), Level 3 reset
+* 42    E EUNATCH (CYGWIN), Protocol driver not attached
+* 43    E ENOCSI (CYGWIN), No CSI structure available
+* 44    E EL2HLT (CYGWIN), Level 2 halted
+* 45    E EDEADLK (CYGWIN), Deadlock
+* 46    E ENOLCK (CYGWIN), No lock
+* 50    E EBADE (CYGWIN), Invalid exchange
+* 51    E EBADR (CYGWIN), Invalid request descriptor
+* 52    E EXFULL (CYGWIN), Exchange full
+* 53    E ENOANO (CYGWIN), No anode
+* 54    E EBADRQC (CYGWIN), Invalid request code
+* 55    E EBADSLT (CYGWIN), Invalid slot
+* 56    E EDEADLOCK (CYGWIN), File locking deadlock error
+* 57    E EBFONT (CYGWIN), Bad font file fmt
+* 74    E EMULTIHOP (CYGWIN), Multihop attempted
+* 75    E ELBIN (CYGWIN), Inode is remote (not really error)
+* 76    E EDOTDOT (CYGWIN), Cross mount point (not really error)
+* 77    E EBADMSG (CYGWIN), Bad message
+* 79    E EFTYPE (CYGWIN), Inappropriate file type or format
+* 80    E ENOTUNIQ (CYGWIN), Given log. name not unique
+* 81    E EBADFD (CYGWIN), f.d. invalid for this operation
+* 82    E EREMCHG (CYGWIN), Remote address changed
+* 83    E ELIBACC (CYGWIN), Can't access a needed shared lib
+* 84    E ELIBBAD (CYGWIN), Accessing a corrupted shared lib
+* 85    E ELIBSCN (CYGWIN), .lib section in a.out corrupted
+* 86    E ELIBMAX (CYGWIN), Attempting to link in too many libs
+* 87    E ELIBEXEC (CYGWIN), Attempting to exec a shared library
+* 88    E ENOSYS (CYGWIN), Function not implemented
+* 89    E ENMFILE (CYGWIN), No more files
+* 90    E ENOTEMPTY (CYGWIN), Directory not empty
+* 91    E ENAMETOOLONG (CYGWIN), File or path name too long
+* 92    E ELOOP (CYGWIN), Too many symbolic links
+*106    E EAFNOSUPPORT (CYGWIN), Address family not supported by protocol family
+*107    E EPROTOTYPE (CYGWIN), Protocol wrong type for socket
+*108    E ENOTSOCK (CYGWIN), Socket operation on non-socket
+*109    E ENOPROTOOPT (CYGWIN), Protocol not available
+*110    E ESHUTDOWN (CYGWIN), Can't send after socket shutdown
+*112    E EADDRINUSE (CYGWIN), Address already in use
+*113    E ECONNABORTED (CYGWIN), Software caused connection abort
+*114    E ENETUNREACH (CYGWIN), Network is unreachable
+*115    E ENETDOWN (CYGWIN), Network interface is not configured
+*116    E ETIMEDOUT (CYGWIN), Connection timed out
+*117    E EHOSTDOWN (CYGWIN), Host is down
+*118    E EHOSTUNREACH (CYGWIN), Host is unreachable
+*119    E EINPROGRESS (CYGWIN), Connection already in progress
+*120    E EALREADY (CYGWIN), Socket already connected
+*121    E EDESTADDRREQ (CYGWIN), Destination address required
+*122    E EMSGSIZE (CYGWIN), Message too long
+*123    E EPROTONOSUPPORT (CYGWIN), Unknown protocol
+*124    E ESOCKTNOSUPPORT (CYGWIN), Socket type not supported
+*125    E EADDRNOTAVAIL (CYGWIN), Address not available
+*126    E ENETRESET (CYGWIN), Connection aborted by network
+*127    E EISCONN (CYGWIN), Socket is already connected
+*128    E ENOTCONN (CYGWIN), Socket is not connected
+*129    E ETOOMANYREFS (CYGWIN), 
+*130    E EPROCLIM (CYGWIN), 
+*131    E EUSERS (CYGWIN), 
+*132    E EDQUOT (CYGWIN), 
+*133    E ESTALE (CYGWIN), 
+*134    E ENOTSUP (CYGWIN), Not supported
+*135    E ENOMEDIUM (CYGWIN), No medium (in tape drive)
+*136    E ENOSHARE (CYGWIN), No such host or network path
+*

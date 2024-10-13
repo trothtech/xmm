@@ -1,0 +1,92 @@
+#!/usr/bin/env regina
+/*
+ *        Name: xmmrexx.rx (Rexx script)
+ *              demonstrate the message handler called from Rexx
+ *        Date: 2023-04-12 (Wed) 
+ *    See also: xmmrexx.sh, xmmdemoc.c, MessageDemo.java
+ *
+ *        Note: This is the Rexx interface to XMITMSGX.
+ *              It uses the rc + rs style return value made popular
+ *              by Rexx/Sockets. That allows for both status and result
+ *              to be returned without the need for supplemental variables.
+ *
+ */
+
+/* what platform are we running on? do we need to load the functions? */
+Parse Source sys . fn .
+If sys = "CMS" Then nl = '15'x
+Else Do
+  Parse Value RxFuncAdd('xmm','xmmrexx','RxXmitmsgX') With rc rs
+  If rc <> 0 Then Signal LoadFailed
+  nl = '0A'x
+End
+
+/* announce the sample and language, also message number 205 (below)  */
+Say "Message Handler demonstration program in Rexx"
+
+/* the "VERSION" subfunction can be called at any time w/w/o INIT     */
+Parse Value xmm("VERSION") With rc rs
+If rs <> "" Then Say rs
+If rc <> 0 Then Signal CallFailed
+
+/* initialize the messages file of interest */
+Parse Value xmm("INIT","xmitmsgx","options") with rc rs
+If rc <> 0 Then Signal CallFailed
+
+/* Hello, World! */
+Parse Value xmm("PRINT",201) with rc rs
+If rs <> "" Then Say rs
+If rc <> 0 Then Signal CallFailed
+
+/* message number 119 only has 9 replaceable tokens so #10 is ignored */
+Parse Value xmm("PRINT",119,"#1","#2","#3","#4","#5","#6","#7","#8","#9","#10") with rc rs
+If rs <> "" Then Say rs
+If rc <> 0 Then Signal CallFailed
+
+/* message number 119 only has 9 replaceable tokens so #10 is ignored */
+Parse Value xmm("STRING",119,"#1","#2","#3","#4","#5","#6","#7","#8","#9","#10") with rc rs
+If rs <> "" Then Say rs "(string)"
+If rc <> 0 Then Signal CallFailed
+
+/* as mentioned above, do the sample name thing using the utility */
+Parse Value xmm("PRINT",205,"Rexx") with rc rs
+If rs <> "" Then Say rs
+If rc <> 0 Then Signal CallFailed
+
+/* do an orderly shutdown of the library */
+Parse Value xmm("QUIT") with rc rs
+If rs <> "" Then Say rs
+If rc <> 0 Then Signal CallFailed
+
+Exit
+
+/* ---------------------------------------------------------------------
+ */
+PrintHexBytes: Procedure
+Parse Arg buf , .
+o = ""
+
+Do While Length(buf) > 0
+  Parse Var buf +0 c +1 buf
+  o = o || " " || C2X(c)
+  If Length(o) > 47 Then Do ; Say o ; o = "" ; End
+End
+
+If Length(o) > 0 Then Say o
+
+Return
+
+/* ---------------------------------------------------------------------
+ */
+LoadFailed:
+Say "### load failed! RC =" rc "###"
+If rs <> "" Then Say "###" rs "###"
+Exit rc
+
+/* ---------------------------------------------------------------------
+ */
+CallFailed:
+Say rs
+Exit rc
+
+

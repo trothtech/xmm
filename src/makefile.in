@@ -9,7 +9,7 @@
 #
 
 APPLID          =       xmitmsgx
-VERSION         =       2.1.4
+VERSION         =       2.1.6
 
 DELIVERABLES    =       xmitmsg xmiterr xmmlogin libxmitmsgx.a libxmitmsgxdyn.so
 SOURCEURL       =       https://raw.githubusercontent.com/trothr/xmitmsgx/master
@@ -220,9 +220,9 @@ xmitmsgx.rpm:   xmitmsgx.spec
 #
 xmitmsgx.spec:  xmitmsgx.spec.in
 		@echo "$(MAKE): checking required variables"
-		test ! -z "$(UNAMEM)" # UNAMEM
-		test ! -z "$(RELEASE)" # RELEASE
-		test ! -z "$(STAGING)" # STAGING
+#		test ! -z "$(UNAMEM)" # UNAMEM
+#		test ! -z "$(RELEASE)" # RELEASE
+#		test ! -z "$(STAGING)" # STAGING
 		cat xmitmsgx.spec.in \
 		  | sed 's#%SPEC_PREFIX%#$(PREFIX)#g' \
 		  | sed 's#%SPEC_UNAMEM%#$(UNAMEM)#g' \

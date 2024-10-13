@@ -1,0 +1,79 @@
+*
+*
+*         Name: xmitmsgx.msgs
+*               message repository for 'xmitmsgx'
+*       Author: Rick Troth, Rice University, Information Systems
+*         Date: 1993-May-24, Oct-30, 2017-Dec-03 (Sun)
+*
+*               The following is partially drawn from VM/CMS.
+*               The format of this file limits us to 10000 messages,
+*               but other message source file formats are intended.
+*
+* The next line sets the token introducer.
+& 3
+* It also indicates default number of digits (which we ignore).
+*
+*nnnffllv mmmmmmmmmmmmmmmmmmmmmmmm...
+* We don't implement format numbers or line numbers but leave those
+* columns in this file for compatibility with the CMS impmenentation.
+   2    E ENOENT, file &1 not found
+   3    E Invalid option: &1
+*
+   4    W Warning messages issued
+   8    E Error messages issued
+  12    S Severe error messages issued
+  16    T Terminal error messages issued
+*
+* The following Unix errors do not match counterpart messages in VM/CMS
+  11    E EAGAIN, try the operation again
+  20    E ENOTDIR, argument is not a directory
+  21    E EISDIR, argument is a directory and should not be
+  22    E EINVAL, invalid parameter or argument
+*
+ 111    I highest message number &1
+ 112    I esape character '&' (token introducer)
+ 113    I code field major '&1' minor '&2'
+ 114    I message source file '&1'
+ 115    I detected locale '&1'
+ 116    I detected applid '&1'
+ 117    I detected caller '&1'
+ 118    I this\nR\na\ntest
+ 119    I substitutions &1 &2 &3 &4 &5 &6 &7 &8 &9
+* Logically there is no limit to the number of substitutions, but we
+* only test to 9, and the CMS implementation is formally limited to 20.
+*
+* most of this message catalog is demonstrative, but here are some "for real"
+ 201    I Hello, World!
+ 202    I &1 signing on
+ 203    I success
+ 204    I XMITMSG version &1
+ 205    I Message Handler demonstration program in &1
+*
+ 301    E message handler structure not yet initialized
+ 302    E message handler structure already initialized
+ 384    E Missing modifier keyword(s).
+ 386    E Missing operand(s).
+ 388    E Invalid keyword: &1
+ 389    E Invalid operand: &1
+ 391    E Unexpected operand(s): &1
+ 394    E Invalid option: &1
+ 395    E Invalid value &1 for &2 option
+ 405    E Invalid or missing message number
+ 408    E Number of substitutions exceeds 20
+*
+ 514    E Return code &1 from &2
+*
+ 766    I Substitution character is &1
+ 767    I Number of message number characters to display is &1
+ 768    W Invalid substitution character value &1
+ 769    W Invalid number of message characters value &1
+ 770    E Invalid application id &1
+ 771    E Invalid message number.
+ 772    E Invalid format number.
+ 773    E Duplicate message id &1
+ 774    E Line numbers for messages are not consecutive.
+ 775    W Text too long.
+*
+ 813    E Message repository '&1' not found.
+ 814    E Message number &1 was not found.
+*
