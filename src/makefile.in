@@ -9,7 +9,7 @@
 #
 
 APPLID          =       xmitmsgx
-VERSION         =       2.1.6
+VERSION         =       2.1.7
 
 DELIVERABLES    =       xmitmsg xmiterr xmmlogin libxmitmsgx.a libxmitmsgxdyn.so
 SOURCEURL       =       https://raw.githubusercontent.com/trothr/xmitmsgx/master
@@ -275,6 +275,7 @@ clean:
 
 distclean:      clean
 		@rm -f configure.h configure.sh xmmconfig.h xmmconfig.sh
+		@rm -f .rpmseq makefile
 
 veryclean:      distclean
 
