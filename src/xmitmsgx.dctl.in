@@ -1,0 +1,23 @@
+#
+#
+#         Name: xmitmsgx.dctl[.in] (Debian installer "control" file)
+#         Date: 2025-07-14 (Mon)
+#
+#
+
+Package: %SPEC_APPLID%
+Version: %SPEC_VERSION%
+Maintainer: Rick Troth <rick@trothtech.us>
+Architecture: %SPEC_UNAMEM%
+Section: utils
+Priority: optional
+Description: XMM (xmitmsgx)
+  This package provides similar capability for Unix/Linux/POSIX
+  to that of the 'XMITMSG' command and "APPLMSG" assembly language macro
+  found in the VM/CMS environment.
+
+#Essential
+#Depends: <put dependency packages here>
+#Homepage http://www.casita.net/pub/xmm/
+
+
