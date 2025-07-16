@@ -9,7 +9,7 @@
 #
 
 APPLID          =       xmitmsgx
-VERSION         =       2.1.8
+VERSION         =       2.1.9
 
 DELIVERABLES    =       xmitmsg xmiterr xmmlogin libxmitmsgx.a libxmitmsgxdyn.so
 SOURCEURL       =       https://raw.githubusercontent.com/trothr/xmitmsgx/master
@@ -292,13 +292,12 @@ errno.msgs:
 clean:
 		rm -f *.o *.a *.so *.dylib *.rpm *.deb *.log *.class \
 			msgtest xmsgtest xfortune xmiterr xmitmsg xmmlogin \
-			xmitmsgx.spec xmmjava.h
-		rm -rf rpmbuild.d debbuild.d
+			xmitmsgx.spec xmitmsgx.dctl xmmjava.h
 
 distclean:
 		rm -f *.o *.a *.so *.dylib *.rpm *.deb *.log *.class \
 			msgtest xmsgtest xfortune xmiterr xmitmsg xmmlogin \
-			xmitmsgx.spec xmmjava.h
+			xmitmsgx.spec xmitmsgx.dctl xmmjava.h
 		rm -rf rpmbuild.d debbuild.d
 		@rm -f configure.h configure.sh makefile.old \
 		  xmmconfig.h xmmconfig.sh

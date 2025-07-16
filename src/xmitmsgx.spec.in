@@ -44,13 +44,13 @@ true
 
 # do a 'make install' and this is not needed
 %build
-mkdir -p $HOME/rpmbuild/BUILDROOT/%SPEC_APPLID%-%SPEC_VERSION%-%SPEC_RELEASE%.%SPEC_UNAMEM%/%SPEC_PREFIX%
-rsync -a -u -x -H -O -S -v %SPEC_STAGING%/. $HOME/rpmbuild/BUILDROOT/%SPEC_APPLID%-%SPEC_VERSION%-%SPEC_RELEASE%.%SPEC_UNAMEM%/%SPEC_PREFIX%/.
+mkdir -p $HOME/rpmbuild/BUILDROOT/%SPEC_APPLID%-%SPEC_VERSION%-%SPEC_RELEASE%.%SPEC_UNAMEM%
+rsync -a -u -x -H -O -S -v %SPEC_STAGING%/. $HOME/rpmbuild/BUILDROOT/%SPEC_APPLID%-%SPEC_VERSION%-%SPEC_RELEASE%.%SPEC_UNAMEM%/.
 
 # we should have done a 'make install' before this step
 %install
-mkdir -p $HOME/rpmbuild/BUILDROOT/%SPEC_APPLID%-%SPEC_VERSION%-%SPEC_RELEASE%.%SPEC_UNAMEM%/%SPEC_PREFIX%
-rsync -a -u -x -H -O -S -v %SPEC_STAGING%/. $HOME/rpmbuild/BUILDROOT/%SPEC_APPLID%-%SPEC_VERSION%-%SPEC_RELEASE%.%SPEC_UNAMEM%/%SPEC_PREFIX%/.
+mkdir -p $HOME/rpmbuild/BUILDROOT/%SPEC_APPLID%-%SPEC_VERSION%-%SPEC_RELEASE%.%SPEC_UNAMEM%
+rsync -a -u -x -H -O -S -v %SPEC_STAGING%/. $HOME/rpmbuild/BUILDROOT/%SPEC_APPLID%-%SPEC_VERSION%-%SPEC_RELEASE%.%SPEC_UNAMEM%/.
 
 #%prefix %SPEC_PREFIX%
 # The %files section is a list of the files that comprise the package.
@@ -68,15 +68,15 @@ rsync -a -u -x -H -O -S -v %SPEC_STAGING%/. $HOME/rpmbuild/BUILDROOT/%SPEC_APPLI
 %SPEC_PREFIX%/share/locale/en_US/xmitmsgx.msgs
 %SPEC_PREFIX%/share/locale/en_US/errno.msgs
 %SPEC_PREFIX%/sbin/xmitmivp.sh
-%SPEC_PREFIX%/src/xmitmivp.c
-#%SPEC_PREFIX%/src/*.h
-#%SPEC_PREFIX%/src/makefile
-%SPEC_PREFIX%/src/xmmdemoc.c
-%SPEC_PREFIX%/src/xmmdemoc.sh
-%SPEC_PREFIX%/src/xmmrexx.rx
-%SPEC_PREFIX%/src/xmmrexx.sh
-#%SPEC_PREFIX%/src/MessageDemo.java
-#%SPEC_PREFIX%/src/MessageDemo.sh
+%SPEC_PREFIX%/src/%SPEC_APPLID%/xmitmivp.c
+#%SPEC_PREFIX%/src/%SPEC_APPLID%/*.h
+#%SPEC_PREFIX%/src/%SPEC_APPLID%/makefile
+%SPEC_PREFIX%/src/%SPEC_APPLID%/xmmdemoc.c
+%SPEC_PREFIX%/src/%SPEC_APPLID%/xmmdemoc.sh
+%SPEC_PREFIX%/src/%SPEC_APPLID%/xmmrexx.rx
+%SPEC_PREFIX%/src/%SPEC_APPLID%/xmmrexx.sh
+#%SPEC_PREFIX%/src/%SPEC_APPLID%/MessageDemo.java
+#%SPEC_PREFIX%/src/%SPEC_APPLID%/MessageDemo.sh
 #%SPEC_PREFIX%/vendor/package/sbin/install.sh
 
 %clean
