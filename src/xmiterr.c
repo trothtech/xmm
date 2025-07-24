@@ -11,6 +11,8 @@
  */
 
 #include <stdlib.h>
+#include <errno.h>
+#include <stdio.h>
 
 #define MSGMAX 16
 
@@ -24,7 +26,8 @@ int main(int argc, char*argv[])
 
     /* Open the messages file, read it, get ready for service.        */
     rc = xmopen("errno",0,NULL);
-    if (rc != 0) return rc;
+    if (rc != 0) { if (errno != 0) perror("xmopen()");
+      return rc; }
 
     /* Ensure we have enough arguments. */
     if (argc < 2)
