@@ -11,6 +11,7 @@
 #include <string.h>
 
 #include <xmitmsgx.h>
+char *xmmprefix = PREFIX;            /* tells XMM to share our prefix */
 
 int main(int argc,char*argv[])
   {

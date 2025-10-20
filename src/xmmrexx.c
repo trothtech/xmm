@@ -13,6 +13,7 @@
  *
  *  Build with: cc -fPIC -o xmmrexx.o -c xmmrexx.c
  *              cc -shared -o libxmmrexx.so xmmrexx.o
+ *              ... on Linux, varies elsewhere
  *
  */
 

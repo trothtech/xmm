@@ -19,13 +19,24 @@
 #include <fcntl.h>
 #include <errno.h>
 
-#include <syslog.h>
+#if defined(_WIN32) || defined(_WIN64)
+ #define  LOG_EMERG     0   /* system is unusable */
+ #define  LOG_ALERT     1   /* action must be taken immediately */
+ #define  LOG_CRIT      2   /* critical conditions */
+ #define  LOG_ERR       3   /* error conditions */
+ #define  LOG_WARNING   4   /* warning conditions */
+ #define  LOG_NOTICE    5   /* normal but significant condition */
+ #define  LOG_INFO      6   /* informational */
+ #define  LOG_DEBUG     7   /* debug-level messages */
+#else
+ #include <syslog.h>
+ #define XMM_POSIX
+#endif
 
 #include <libgen.h>
 #include <ctype.h>
 
 #include "xmitmsgx.h"
-
 extern char *xmmprefix; /* installation prefix not application prefix */
 
 /* These are the locale environment variables we will interrogate:    */
@@ -83,7 +94,7 @@ static struct MSGSTRUCT *msglobal = NULL, msstatic;
  * Open the messages file, read it, get ready for service.
  * Returns: zero upon successful operation, or 813 if cannot open the repository file
  * The VM/CMS counterpart does 'SET LANG' to load the messages file.
- * See also the catopen() call on many POSIX systems.
+ * See also: the catopen() call on many POSIX systems.
  *
  * The first thing we must do is find and open the message repository.
  * This routine looks in several places using a variety of names.
@@ -93,8 +104,10 @@ int xmopen(unsigned char*file,int opts,struct MSGSTRUCT*ms)
   {
     int rc, fd, memsize, i, j;
     char filename[256]; int filesize;
-    unsigned char *p, *q, *escape, *locale;
+    unsigned char *p, *q, *locale;
     struct stat statbuf;
+
+    static char ampersand[2] = "&";       /* default escape character */
 
     /* NULL struct pointer means to use global static storage         *
      * unless it was already established, in which case "busy".       */
@@ -257,7 +270,7 @@ int xmopen(unsigned char*file,int opts,struct MSGSTRUCT*ms)
         if (rc != 0) return rc; else return EBADF; }
     close(fd);
 
-    /* put filename at end of buffer */
+    /* append filename after end of messages buffer */
     p = &ms->msgdata[rc]; *p++ = 0x00;
     (void) strncpy(p,filename,sizeof(filename)-1);
     ms->msgfile = p;
@@ -273,18 +286,23 @@ int xmopen(unsigned char*file,int opts,struct MSGSTRUCT*ms)
     /* parse the file */
     p = ms->msgdata;
     ms->msgmax = 0;
+    ms->escape = NULL;
     while (*p != 0x00)
       {
         /* mark off and measure this line */
         q = p; i = 0;
         while (*p != 0x00 && *p != '\n') { p++; i++; }
+// FIXME: need to strip CR
+//      if (i > 0) if (q[i-1] == '\r') q[i-1] = 0x00;
         if (*p == '\n') *p++ = 0x00;
 
         /* skip comments */
         if (*q == '*' || *q == '#') continue;
 
         /* look for escape character */
-        if (*q != ' ' && (*q < '0' || *q > '9')) { ms->escape = q; continue; }
+        if (ms->escape == NULL)
+        if (*q != ' ' && (*q < '0' || *q > '9') && *q != 0x00)
+                                           { ms->escape = q; continue; }
 
         /* ignore short lines */
         if (i < 10) continue;
@@ -314,9 +332,11 @@ int xmopen(unsigned char*file,int opts,struct MSGSTRUCT*ms)
 
     /* handle SYSLOG and record other options */
     ms->msgopts = opts;
+#ifdef XMM_POSIX
     if (ms->msgopts & MSGFLAG_SYSLOG) {
       /* figure out syslog identity */
       openlog(ms->applid,LOG_PID,LOG_USER); }
+#endif
 
     /* default "caller" is the user, but is better as a function name */
 
@@ -328,6 +348,9 @@ int xmopen(unsigned char*file,int opts,struct MSGSTRUCT*ms)
     ms->msglevel = 0;
     ms->msgfmt = 0;   ms->msgline = 0;  /* neither is yet implemented */
     ms->letter = NULL;
+
+    /* if no escape character set then make it an ampersand           */
+    if (ms->escape == NULL) ms->escape = ampersand;
 
     /* return success */
     return 0;
@@ -359,6 +382,7 @@ int xmmake(struct MSGSTRUCT*ms)
     p++; if (*p == ' ') p++;
     ms->msgtext = p;
 
+    /* perform token replacement, the main purpose of this library    */
     while (i < ms->msglen)
       { if (*p == *ms->escape)
           { p++;
@@ -393,6 +417,7 @@ int xmmake(struct MSGSTRUCT*ms)
       }
     ms->msglen = i;
 
+#ifdef XMM_POSIX
     /* optional syslogging */
     if (ms->msgopts & MSGFLAG_SYSLOG) {
       if (ms->msglevel == 0) {
@@ -409,6 +434,7 @@ int xmmake(struct MSGSTRUCT*ms)
         default:                 ms->msglevel = LOG_INFO;              break;
                            } }
                                       }
+#endif
 
     return 0;
   }
@@ -444,8 +470,10 @@ int xmprint(int msgnum,int msgc,unsigned char*msgv[],int msgopts,struct MSGSTRUC
     rc = xmmake(ms);                              /* make the message */
     if (rc != 0) return xm_negative(rc);    /* if error then negative */
 
+#ifdef XMM_POSIX
     /* optionally route to SYSLOG */
     if (ms->msgopts & MSGFLAG_SYSLOG) syslog(ms->msglevel,"%s",ms->msgbuf);
+#endif
 
     if (ms->msgopts & MSGFLAG_NOPRINT) ; else
     if (ms->msglevel > 5)
@@ -487,8 +515,10 @@ int xmwrite(int fd,int msgnum,int msgc,unsigned char*msgv[],int msgopts,struct M
     rc = xmmake(ms);                              /* make the message */
     if (rc != 0) return xm_negative(rc);    /* if error then negative */
 
+#ifdef XMM_POSIX
     /* optionally route to SYSLOG */
     if (ms->msgopts & MSGFLAG_SYSLOG) syslog(ms->msglevel,"%s",ms->msgbuf);
+#endif
 
     ms->msgbuf[ms->msglen++] = '\n';
     rc = write(fd,ms->msgbuf,ms->msglen);
@@ -539,7 +569,9 @@ int xmclose(struct MSGSTRUCT*ms)
     /* release any allocated storage for this MSGSTRUCT */
     if (ms->msgdata != NULL) { (void) free(ms->msgdata); ms->msgdata = NULL; }
     if (ms->msgtable != NULL) { (void) free(ms->msgtable); ms->msgtable = NULL; }
+#ifdef XMM_POSIX
     if (ms->msgopts & MSGFLAG_SYSLOG) closelog();
+#endif
     ms->msgopts = 0;
 
     /* clear character fields */
