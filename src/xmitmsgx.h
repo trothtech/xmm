@@ -29,7 +29,7 @@
 #define  MSGFLAG_NOLOG    0x02   /* used by xmprint() and xmwrite() to skip logging */
 #define  MSGFLAG_NOCODE   0x04   /* means message text only, good for decorations */
 #define  MSGFLAG_NOPRINT  0x08   /* implies log only */
-/* what about time stamp? logging automtically has time stamping */
+/* what about time stamp? logging automatically has time stamping */
 
 #define  MSGERR_NOLIB     813
 #define  MSGERR_NOMSG     814
@@ -48,7 +48,7 @@ typedef struct MSGSTRUCT
 
     int  msgfmt;        /* message format number (for future use) */
     int  msgline;       /* message line number (for future use, zero means all lines) */
-    int  msglevel;      /* message level/serverity (zero means use the letter in the file) */
+    int  msglevel;      /* message level/severity (zero means use the letter in the file) */
     int  msgopts;       /* set by xmopen(), sometimes overridden for xmmake() */
 
     /* the following are probably not for external use */
