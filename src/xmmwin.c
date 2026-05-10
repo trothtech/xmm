@@ -26,7 +26,7 @@ char*getlogin()
     if (u != NULL) if (*u != 0x00) return u;
     u = getenv("USERNAME");
     if (u != NULL) if (*u != 0x00) return u;
-    return "?"
+    return "?";
   }
 
 
