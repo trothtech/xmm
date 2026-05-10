@@ -43,7 +43,7 @@ int main(int argc, char*argv[])
     msgc = i;
 
     /* Print to stdout or stderr depending on level, optionally syslog. */
-    rc = xmprint(msgn,msgc,msgv,0,NULL);
+    rc = xmprint(msgn,msgc,(char**)msgv,0,NULL);
     if (rc < 0)
       { (void) xmclose(NULL);
         return rc; }

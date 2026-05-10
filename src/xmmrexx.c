@@ -69,7 +69,7 @@ int rxinit(ULONG rxargc, RXSTRING rxargv[],RXSTRING*rxrets)
     l = rxargv->strlength;
     if (l >= sizeof(opts)) l = sizeof(opts) - 1;
     strncpy(opts,rxargv->strptr,l); opts[l] = 0x00;
-//printf("xmmrx: INIT '%s' '%s'\n",file,opts);
+/* printf("xmmrx: INIT '%s' '%s'\n",file,opts);                       */
 
     mymsgstruct = rxmsgstruct;
     if (rxmsgstruct == NULL)
@@ -79,7 +79,7 @@ int rxinit(ULONG rxargc, RXSTRING rxargv[],RXSTRING*rxrets)
     /* call xmopen() to initialize the library */
     rc = xmopen(file,0,mymsgstruct);
     if (rc != 0) return rc;
-//printf("xmmrx: INIT worked!\n");
+/* printf("xmmrx: INIT worked!\n");                                   */
 
     /* using pfxmaj and pfxmin is definitely outside the XMITMSGX API */
     strncpy(mymsgstruct->pfxmaj,"XMM",4);
@@ -106,7 +106,7 @@ int rxprint(ULONG rxargc, RXSTRING rxargv[],RXSTRING*rxrets)
     unsigned
     char buffer[4096], *msgv[32], *p;
     struct MSGSTRUCT *mymsgstruct;
-//printf("xmmrx: PRINT\n");
+/* printf("xmmrx: PRINT\n");                                          */
 
     mymsgstruct = rxmsgstruct;
 
@@ -117,7 +117,7 @@ int rxprint(ULONG rxargc, RXSTRING rxargv[],RXSTRING*rxrets)
     rxargv++;  rxargc--;   /* bump count and pointer to next argument */
 
     msgc = 0;
-//printf("xmmrx: %d replacement tokens\n",rxargc);
+/* printf("xmmrx: %d replacement tokens\n",rxargc);                   */
 
     /* copy all Rexx arguments to local storage so we can null term   */
     k = 0;                            /* k and l for offset and limit */
@@ -136,8 +136,8 @@ int rxprint(ULONG rxargc, RXSTRING rxargv[],RXSTRING*rxrets)
         rxargv++;  rxargc--;    /* bump count and pointer to next arg */
       }
 
-//printf("xmmrx: %d replacement tokens, string size %d\n",msgc,rxrets->strlength);
-    rc = xmprint(msgn,msgc,msgv,0,mymsgstruct);
+/* printf("xmmrx: %d replacement tokens, string size %d\n",msgc,rxrets->strlength); */
+    rc = xmprint(msgn,msgc,(char**)msgv,0,mymsgstruct);
 
     rxrets->strptr[0] = 0x00; rxrets->strlength = 0;
 
@@ -184,7 +184,7 @@ int rxstring(ULONG rxargc, RXSTRING rxargv[],RXSTRING*rxrets)
         rxargv++;  rxargc--;    /* bump count and pointer to next arg */
       }
 
-    rc = xmstring(rxrets->strptr,rxrets->strlength,msgn,msgc,msgv,mymsgstruct);
+    rc = xmstring(rxrets->strptr,rxrets->strlength,msgn,msgc,(char**)msgv,mymsgstruct);
     rxrets->strlength = strlen(rxrets->strptr);
 
     return rc;
@@ -200,7 +200,7 @@ int rxquit(ULONG rxargc, RXSTRING rxargv[],RXSTRING*rxrets)
   {
     int rc;
     struct MSGSTRUCT *mymsgstruct;
-//printf("xmmrx: QUIT\n");
+/* printf("xmmrx: QUIT\n");                                           */
 
     if (rxmsgstruct == NULL) return 0;
     mymsgstruct = rxmsgstruct;
@@ -210,7 +210,7 @@ int rxquit(ULONG rxargc, RXSTRING rxargv[],RXSTRING*rxrets)
 
     free(mymsgstruct);
 
-//  strncpy(rxrets->strptr,"I quit!",rxrets->strlength);
+/*  strncpy(rxrets->strptr,"I quit!",rxrets->strlength);              */
     rxrets->strptr[0] = 0x00; rxrets->strlength = 0;
 
     rxmsgstruct = NULL;
@@ -240,7 +240,7 @@ RxXmitmsgX(CONST CHAR *name,
 
     /* establish a return string for all internal subfunction calls   */
     rxrets.strptr = rsdata; rxrets.strlength = sizeof(rsdata) - 1;
-//strcpy(rsdata,"Rexx Rocks!"); rxrets.strlength = 12;
+/* strcpy(rsdata,"Rexx Rocks!"); rxrets.strlength = 12;               */
 
     /* all subfunctions require at least one argument                 */
     if (rxargc < 1) return RXFUNC_BADTYPE; /* Incorrect call to routine */
@@ -283,11 +283,11 @@ RxXmitmsgX(CONST CHAR *name,
         return RXFUNC_BADTYPE;           /* Incorrect call to routine */
               }
 
-//  retstr->strptr[retstr->strlength] = 0x00;
+/*  retstr->strptr[retstr->strlength] = 0x00;                         */
     if (rc < 0) rc = 0 - rc;      /* force negative RC to be positive */
            else rc = 0;            /* but positive RC is not an error */
     sprintf(retstr->strptr,"%d %s",rc,rxrets.strptr);
-//  snprintf(retstr->strptr,retstr->strlength,"%d %s",rc,rxrets.strptr);
+/*  snprintf(retstr->strptr,retstr->strlength,"%d %s",rc,rxrets.strptr); */
     retstr->strlength = strlen(retstr->strptr);
 
     /* return the results */

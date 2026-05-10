@@ -37,7 +37,7 @@ unsigned
     strcpy(mymsgstruct.pfxmin,"LOG");    /* three-character up-cased caller/minor */
 
     /* so far so good so now write the message to SYSLOG              */
-    rc = xmprint(202,msgc,msgv,MSGFLAG_SYSLOG|MSGFLAG_NOPRINT,&mymsgstruct);
+    rc = xmprint(202,msgc,(char**)msgv,MSGFLAG_SYSLOG|MSGFLAG_NOPRINT,&mymsgstruct);
 
     /* clean-up in all cases whether xmprint() failed or not          */
     xmclose(&mymsgstruct);

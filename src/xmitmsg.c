@@ -1,7 +1,7 @@
 /*
  *
  *        Name: xmitmsg.c (C program source)
- *              "transmit message" for POSIX
+ *              "transmit message" for POSIX systems
  *              read and present enumerated messages from the repository
  *      Author: Rick Troth, Rice University, Information Systems
  *              Rick Troth, rogue programmer, La Casita en la Esquina
@@ -28,7 +28,9 @@ char *xmmprefix = PREFIX; /* installation prefix not application prefix */
 int main(int argc,char*argv[])
   {
     int rc, msgn, msgc, i, j, n;
-    unsigned char *applid, *caller, *letter, buffer[256], *msgv[MSGMAX];
+    /* unsigned */
+    char *applid, *caller, *letter, buffer[256], *msgv[MSGMAX];
+    /* if only we could always treat all char as unsigned             */
     struct MSGSTRUCT ts, *ms;
 
     /* establish some defaults */

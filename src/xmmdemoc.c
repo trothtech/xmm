@@ -38,7 +38,7 @@ int main(int argc,char*argv[])
 
     rc = xmprint(201,0,NULL,0,ms);
 
-//            MessageService.print(119,msgs);
+/*            MessageService.print(119,msgs);                         */
     /* message number 119 only specifies 9 tokens so #10 is ignored   */
     unsigned char *mv119[] = { "dummy",
           "#1", "#2", "#3", "#4", "#5", "#6", "#7", "#8", "#9", "#10" };
