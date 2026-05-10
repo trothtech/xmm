@@ -17,4 +17,16 @@ void closelog(void) { return; }
 /*    It is specifically for supporting XMM/XMITMSGX use of SYSLOG.   */
 void syslog(int priority,char*syslgfmt,char*syslgtxt) { return ; }
 
+#include <stdlib.h>
+
+char*getlogin()
+  {
+    char *u;
+    u = getenv("USER");
+    if (u != NULL) if (*u != 0x00) return u;
+    u = getenv("USERNAME");
+    if (u != NULL) if (*u != 0x00) return u;
+    return "?"
+  }
+
 

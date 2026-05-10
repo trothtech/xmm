@@ -10,6 +10,10 @@
 #include <unistd.h>
 #include <string.h>
 
+#if defined(_WIN32) || defined(_WIN64)
+ #include "xmmwin.h"
+#endif
+
 #include "xmitmsgx.h"
 char *xmmprefix = PREFIX; /* installation prefix not application prefix */
 

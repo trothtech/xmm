@@ -52,4 +52,6 @@ void closelog(void);
 void openlog(char*,int,int);
 void syslog(int,char*,char*);             /* see comments in xmmwin.c */
 
+char*getlogin();
+
 
