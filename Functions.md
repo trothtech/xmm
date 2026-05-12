@@ -42,7 +42,7 @@ with the size of the resulting message.
 * int xmprint(,,,,)
 
 Print a message, stdout or stderr depending on level/letter.
-Newline automatically appended. Optionally SYSLOG the message.
+Newline automatically appended. Optionally also SYSLOG the message.
 Returns: number of characters printed, negative indicates error
 Return value does not reflect SYSLOG effects or errors.
 
@@ -57,7 +57,7 @@ msgstruct: a pointer to MSGSTRUCT or NULL (NULL is not thread safe)
 * int xmwrite(,,,,,)
 
 Write a message to the indicated file descriptor.
-Newline automatically appended. Optionally SYSLOG the message.
+Newline automatically appended. Optionally also SYSLOG the message.
 Returns: number of bytes written, negative indicates error
 Return value does not reflect SYSLOG effects or errors.
 
