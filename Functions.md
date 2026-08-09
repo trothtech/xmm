@@ -1,7 +1,7 @@
 # XMITMSGX Functions
 
 The central function in the library is `xmmake()`.
-Other functions are derivatives for convenience and standarization.
+Other functions are derivatives for convenience and standardization.
 
 ## Routines in the Native Library
 
