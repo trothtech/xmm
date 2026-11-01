@@ -16,167 +16,167 @@
 *nnnffllv mmmmmmmmmmmmmmmmmmmmmmmm...
 * We don't implement format numbers (ff) or line numbers (ll) but leave
 * those columns in this file for compatibility with the CMS impmenentation.
-   1    E EPERM, operation not permitted
-   2    E ENOENT, no such file or directory &1
-   3    E ESRCH, no such process
-   4    E EINTR, interrupted system call
-   5    E EIO, input/output error
-   6    E ENXIO, no such device or address or device not configured
-   7    E E2BIG, argument list too long
-   8    E ENOEXEC, executable file format error
-   9    E EBADF, bad file number or bad file descriptor
-  10    E ECHILD, no child processes
-  11    E EAGAIN, try the operation again, aka EWOULDBLOCK, the operation would block
+0001    E EPERM, operation not permitted
+0002    E ENOENT, no such file or directory &1
+0003    E ESRCH, no such process
+0004    E EINTR, interrupted system call
+0005    E EIO, input/output error
+0006    E ENXIO, no such device or address or device not configured
+0007    E E2BIG, argument list too long
+0008    E ENOEXEC, executable file format error
+0009    E EBADF, bad file number or bad file descriptor
+0010    E ECHILD, no child processes
+0011    E EAGAIN, try the operation again, aka EWOULDBLOCK, the operation would block
 * 11    E EAGAIN  No more processes                                       CYG
 * 11    E EAGAIN  Resource temporarily unavailable                        SOL
-  12    E ENOMEM, not enough memory
-  13    E EACCES, permission denied
-  14    E EFAULT, bad address or memory segmentation fault
-  15    E ENOTBLK, block device required
-  16    E EBUSY, device or resource busy
-  17    E EEXIST, file exists
-  18    E EXDEV, cross-device link
-  19    E ENODEV, no such device or operation not supported by device
-  20    E ENOTDIR, argument is not a directory
-  21    E EISDIR, argument is a directory and should not be
-  22    E EINVAL, invalid parameter or argument
-  23    E ENFILE, file table overflow, too many open files in system
-  24    E EMFILE, too many open files in the system
-  25    E ENOTTY, not a character device (historically, not a typewriter)
-  26    E ETXTBSY, text file busy
-  27    E EFBIG, file too large
-  28    E ENOSPC, no space left on device
-  29    E ESPIPE, illegal seek
-  30    E EROFS, read-only file system
-  31    E EMLINK, too many links
-  32    E EPIPE, broken pipe
-  33    E EDOM, mathematics argument out of domain of function
-  34    E ERANGE, result too large, math result not representable
+0012    E ENOMEM, not enough memory
+0013    E EACCES, permission denied
+0014    E EFAULT, bad address or memory segmentation fault
+0015    E ENOTBLK, block device required
+0016    E EBUSY, device or resource busy
+0017    E EEXIST, file exists
+0018    E EXDEV, cross-device link
+0019    E ENODEV, no such device or operation not supported by device
+0020    E ENOTDIR, argument is not a directory
+0021    E EISDIR, argument is a directory and should not be
+0022    E EINVAL, invalid parameter or argument
+0023    E ENFILE, file table overflow, too many open files in system
+0024    E EMFILE, too many open files in the system
+0025    E ENOTTY, not a character device (historically, not a typewriter)
+0026    E ETXTBSY, text file busy
+0027    E EFBIG, file too large
+0028    E ENOSPC, no space left on device
+0029    E ESPIPE, illegal seek
+0030    E EROFS, read-only file system
+0031    E EMLINK, too many links
+0032    E EPIPE, broken pipe
+0033    E EDOM, mathematics argument out of domain of function
+0034    E ERANGE, result too large, math result not representable
 *
 * numeric values vary below
-  35    E EDEADLK, resource deadlock would occur; aka EDEADLOCK
-  36    E ENAMETOOLONG, file name or path name too long
-  37    E ENOLCK, no record locks available
-  38    E ENOSYS, function not implemented or invalid system call number
-  39    E ENOTEMPTY, directory not empty
-  40    E ELOOP, too many symbolik links encountered
-  41    E ELNRNG, link number out of range
-  42    E ENOMSG, no message of desired type
-  43    E EIDRM, identifier removed
-  44    E ECHRNG, channel number out of range
-  45    E EL2NSYNC, level 2 not synchronized
-  46    E EL3HLT, level 3 halted
-  47    E EL3RST, level 3 reset
-  48    E ELNRNG, link number out of range
-  49    E EUNATCH, protocol driver not attached
-  50    E ENOCSI, no CSI structure available
-  51    E EL2HLT, level 2 halted
-  52    E EBADE, invalid exchange
-  53    E EBADR, invalid request descriptor
-  54    E EXFULL, exchange full
-  55    E ENOANO, no anode
-  56    E EBADRQC, invalid request code
-  57    E EBADSLT, invalid slot
+0035    E EDEADLK, resource deadlock would occur; aka EDEADLOCK
+0036    E ENAMETOOLONG, file name or path name too long
+0037    E ENOLCK, no record locks available
+0038    E ENOSYS, function not implemented or invalid system call number
+0039    E ENOTEMPTY, directory not empty
+0040    E ELOOP, too many symbolik links encountered
+0041    E ELNRNG, link number out of range
+0042    E ENOMSG, no message of desired type
+0043    E EIDRM, identifier removed
+0044    E ECHRNG, channel number out of range
+0045    E EL2NSYNC, level 2 not synchronized
+0046    E EL3HLT, level 3 halted
+0047    E EL3RST, level 3 reset
+0048    E ELNRNG, link number out of range
+0049    E EUNATCH, protocol driver not attached
+0050    E ENOCSI, no CSI structure available
+0051    E EL2HLT, level 2 halted
+0052    E EBADE, invalid exchange
+0053    E EBADR, invalid request descriptor
+0054    E EXFULL, exchange full
+0055    E ENOANO, no anode
+0056    E EBADRQC, invalid request code
+0057    E EBADSLT, invalid slot
 * 58    I no error
-  59    E EBFONT, bad font file format
-  60    E ENOSTR, device or file is not a stream
-  61    E ENODATA, no data available (for no delay I/O)
-  62    E ETIME, timer expired or stream ioctl timeout
-  63    E ENOSR, out of stream resources
-  64    E ENONET, this machine is not on the network
-  65    E ENOPKG, package not installed
-  66    E EREMOTE, the object is remote or too many levels of remote in path
-  67    E ENOLINK, the virtual circuit link has been severed
-  68    E EADV, advertise error
-  69    E ESRMNT, srmount error
-  70    E ECOMM, communication error on send
-  71    E EPROTO, protocol error
-  72    E EMULTIHOP, multihop attempted
-  73    I EDOTDOT, RFS specific error or cross mount point
-  74    E EBADMSG, not a data message
-  75    E EOVERFLOW, value too large for defined data type
-  76    E ENOTUNIQ, name not unique on network
-  77    E EBADFD, file descriptor &1 is in a bad state or invalid for this operation
-  78    E EREMCHG, remote address changed
-  79    E ELIBACC, cannot access a needed shared library
-  80    E ELIBBAD, accessing corrupted shared library %1
-  81    E ELIBSCN, .lib section in a.out is corrupted
-  82    E ELIBMAX, attempting to link in too many shared libraries
-  83    E ELIBEXEC, cannot exec a shared library directly
-  84    E EILSEQ, illegal byte sequence
-  85    E ERESTART, interrupted system call should be restarted
-  86    E ESTRPIPE, streams pipe error
-  87    E EUSERS, too many users
-  88    E ENOTSOCK, attempted socket operation on non-socket
-  89    E EDESTADDRREQ, destination address required
-  90    E EMSGSIZE, message too long
-  91    E EPROTOTYPE, protocol is wrong type for socket
-  92    E ENOPROTOOPT, protocol not available
-  93    E EPROTONOSUPPORT, protocol not supported
-  94    E ESOCKTNOSUPPORT, socket type not supported
-  95    E EOPNOTSUPP, operation not supported on transport endpoint
-  96    E EPFNOSUPPORT, protocol family not supported
-  97    E EAFNOSUPPORT, address family not supported by protocol family
-  98    E EADDRINUSE, address already in use
-  99    E EADDRNOTAVAIL, cannot assign requested address, not available
- 100    E ENETDOWN, network is down
- 101    E ENETUNREACH, network is unreachable
- 102    E ENETRESET, network dropped connection because of reset
- 103    E ECONNABORTED, software caused connection abort
- 104    E ECONNRESET, connection reset by peer
- 105    E ENOBUFS, no buffer space available
- 106    E EISCONN, transport endpoint is already connected
- 107    E ENOTCONN, transport endpoint is not connected
- 108    E ESHUTDOWN, cannot send after transport endpoint shutdown
- 109    E ETOOMANYREFS, too many references: cannot splice
- 110    E ETIMEDOUT, connection timed out
- 111    E ECONNREFUSED, connection refused
- 112    E EHOSTDOWN, host is down
- 113    E EHOSTUNREACH, host is unreachable, no route to host
- 114    E EALREADY, operation already in progress
- 115    E EINPROGRESS, operation now in progress
- 116    E ESTALE, stale NFS file handle
- 117    E EUCLEAN, structure needs cleaning
- 118    E ENOTNAM, not a XENIX named type file
- 119    E ENAVAIL, no XENIX semaphores available
- 120    E EISNAM, is a named type file
- 121    E EREMOTEIO, remote I/O error
- 122    E EDQUOT, quota exceeded
- 123    E ENOMEDIUM, no medium found or no medium in drive
- 124    E EMEDIUMTYPE, wrong medium type
- 125    E ECANCELED, operation canceled
- 126    E ENOKEY, required key not available
- 127    E EKEYEXPIRED, key has expired
- 128    E EKEYREVOKED, key has been revoked
- 129    E EKEYREJECTED, key was rejected by service
- 130    E EOWNERDEAD, previous owner died
- 131    E ENOTRECOVERABLE, state not recoverable
- 132    E ERFKILL, operation not possible due to RF-kill
- 133    E EHWPOISON, memory page has a hardware error
- 137    E ECASECLASH, filename exists with different case
- 138    E EILSEQ (CYGWIN), illegal byte sequence
- 139    E EOVERFLOW (CYGWIN), value too large for defined data type
- 140    E ECANCELED (CYGWIN), operation canceled
- 141    E ENOTRECOVERABLE (CYGWIN), state not recoverable
- 142    E EOWNERDEAD (CYGWIN), previous owner died
- 143    E ESTRPIPE (CYGWIN), streams pipe error
+0059    E EBFONT, bad font file format
+0060    E ENOSTR, device or file is not a stream
+0061    E ENODATA, no data available (for no delay I/O)
+0062    E ETIME, timer expired or stream ioctl timeout
+0063    E ENOSR, out of stream resources
+0064    E ENONET, this machine is not on the network
+0065    E ENOPKG, package not installed
+0066    E EREMOTE, the object is remote or too many levels of remote in path
+0067    E ENOLINK, the virtual circuit link has been severed
+0068    E EADV, advertise error
+0069    E ESRMNT, srmount error
+0070    E ECOMM, communication error on send
+0071    E EPROTO, protocol error
+0072    E EMULTIHOP, multihop attempted
+0073    I EDOTDOT, RFS specific error or cross mount point
+0074    E EBADMSG, not a data message
+0075    E EOVERFLOW, value too large for defined data type
+0076    E ENOTUNIQ, name not unique on network
+0077    E EBADFD, file descriptor &1 is in a bad state or invalid for this operation
+0078    E EREMCHG, remote address changed
+0079    E ELIBACC, cannot access a needed shared library
+0080    E ELIBBAD, accessing corrupted shared library %1
+0081    E ELIBSCN, .lib section in a.out is corrupted
+0082    E ELIBMAX, attempting to link in too many shared libraries
+0083    E ELIBEXEC, cannot exec a shared library directly
+0084    E EILSEQ, illegal byte sequence
+0085    E ERESTART, interrupted system call should be restarted
+0086    E ESTRPIPE, streams pipe error
+0087    E EUSERS, too many users
+0088    E ENOTSOCK, attempted socket operation on non-socket
+0089    E EDESTADDRREQ, destination address required
+0090    E EMSGSIZE, message too long
+0091    E EPROTOTYPE, protocol is wrong type for socket
+0092    E ENOPROTOOPT, protocol not available
+0093    E EPROTONOSUPPORT, protocol not supported
+0094    E ESOCKTNOSUPPORT, socket type not supported
+0095    E EOPNOTSUPP, operation not supported on transport endpoint
+0096    E EPFNOSUPPORT, protocol family not supported
+0097    E EAFNOSUPPORT, address family not supported by protocol family
+0098    E EADDRINUSE, address already in use
+0099    E EADDRNOTAVAIL, cannot assign requested address, not available
+0100    E ENETDOWN, network is down
+0101    E ENETUNREACH, network is unreachable
+0102    E ENETRESET, network dropped connection because of reset
+0103    E ECONNABORTED, software caused connection abort
+0104    E ECONNRESET, connection reset by peer
+0105    E ENOBUFS, no buffer space available
+0106    E EISCONN, transport endpoint is already connected
+0107    E ENOTCONN, transport endpoint is not connected
+0108    E ESHUTDOWN, cannot send after transport endpoint shutdown
+0109    E ETOOMANYREFS, too many references: cannot splice
+0110    E ETIMEDOUT, connection timed out
+0111    E ECONNREFUSED, connection refused
+0112    E EHOSTDOWN, host is down
+0113    E EHOSTUNREACH, host is unreachable, no route to host
+0114    E EALREADY, operation already in progress
+0115    E EINPROGRESS, operation now in progress
+0116    E ESTALE, stale NFS file handle
+0117    E EUCLEAN, structure needs cleaning
+0118    E ENOTNAM, not a XENIX named type file
+0119    E ENAVAIL, no XENIX semaphores available
+0120    E EISNAM, is a named type file
+0121    E EREMOTEIO, remote I/O error
+0122    E EDQUOT, quota exceeded
+0123    E ENOMEDIUM, no medium found or no medium in drive
+0124    E EMEDIUMTYPE, wrong medium type
+0125    E ECANCELED, operation canceled
+0126    E ENOKEY, required key not available
+0127    E EKEYEXPIRED, key has expired
+0128    E EKEYREVOKED, key has been revoked
+0129    E EKEYREJECTED, key was rejected by service
+0130    E EOWNERDEAD, previous owner died
+0131    E ENOTRECOVERABLE, state not recoverable
+0132    E ERFKILL, operation not possible due to RF-kill
+0133    E EHWPOISON, memory page has a hardware error
+0137    E ECASECLASH, filename exists with different case
+0138    E EILSEQ (CYGWIN), illegal byte sequence
+0139    E EOVERFLOW (CYGWIN), value too large for defined data type
+0140    E ECANCELED (CYGWIN), operation canceled
+0141    E ENOTRECOVERABLE (CYGWIN), state not recoverable
+0142    E EOWNERDEAD (CYGWIN), previous owner died
+0143    E ESTRPIPE (CYGWIN), streams pipe error
 *
- 512    E ERESTARTSYS
- 513    E ERESTARTNOINTR
- 514    E ERESTARTNOHAND, restart if no handler
- 515    E ENOIOCTLCMD, no ioctl command
- 516    E ERESTART_RESTARTBLOCK, restart by calling sys_restart_syscall()
+0512    E ERESTARTSYS
+0513    E ERESTARTNOINTR
+0514    E ERESTARTNOHAND, restart if no handler
+0515    E ENOIOCTLCMD, no ioctl command
+0516    E ERESTART_RESTARTBLOCK, restart by calling sys_restart_syscall()
 *
- 521    E EBADHANDLE, illegal NFS file handle
- 522    E ENOTSYNC, update synchronization mismatch
- 523    E EBADCOOKIE, cookie is stale
- 524    E ENOTSUPP, operation is not supported
- 525    E ETOOSMALL, buffer or request is too small
- 526    E ESERVERFAULT, an untranslatable error occurred
- 527    E EBADTYPE, type not supported by server
- 528    E EJUKEBOX, request initiated, but will not complete before timeout
- 529    E EIOCBQUEUED, iocb queued, will get completion event
- 530    E EIOCBRETRY, iocb queued, will trigger a retry
+0521    E EBADHANDLE, illegal NFS file handle
+0522    E ENOTSYNC, update synchronization mismatch
+0523    E EBADCOOKIE, cookie is stale
+0524    E ENOTSUPP, operation is not supported
+0525    E ETOOSMALL, buffer or request is too small
+0526    E ESERVERFAULT, an untranslatable error occurred
+0527    E EBADTYPE, type not supported by server
+0528    E EJUKEBOX, request initiated, but will not complete before timeout
+0529    E EIOCBQUEUED, iocb queued, will get completion event
+0530    E EIOCBRETRY, iocb queued, will trigger a retry
 *
 * CYGWIN variances
 * 35    E ENOMSG (CYGWIN, Solaris), No message of desired type
@@ -244,14 +244,14 @@
 *132    E EDQUOT (CYGWIN), 
 *133    E ESTALE (CYGWIN), 
 *134    E ENOTSUP (CYGWIN), Not supported
- 135    E ENOMEDIUM (CYGWIN), No medium (in tape drive)
- 136    E ENOSHARE, No such host or network path
+0135    E ENOMEDIUM (CYGWIN), No medium (in tape drive)
+0136    E ENOSHARE, No such host or network path
 *
 * Solaris variances
 * 47    E ECANCELED (Solaris), operation canceled
 * 48    E ENOTSUP Solaris), operation not supported
 * 49    E EDQUOT (Solaris), disk quota exceeded
-  58    E EOWNERDEAD, process died with the lock
+0058    E EOWNERDEAD, process died with the lock
 * 59    E ENOTRECOVERABLE (Solaris), lock is not recoverable
 * 72    E ELOCKUNMAPPED (Solaris), locked lock was unmapped
 * 73    E ENOTACTIVE (Solaris), Facility is not active
@@ -283,16 +283,16 @@
 *131    E ECONNRESET (Solaris), connection reset by peer
 *132    E ENOBUFS (Solaris), no buffer space available
 *133    E EISCONN (Solaris), socket is already connected
- 134    E ENOTCONN (Solaris), socket is not connected
+0134    E ENOTCONN (Solaris), socket is not connected
 *143    E ESHUTDOWN (Solaris), cannot send after socket shutdown
- 144    E ETOOMANYREFS (Solaris), too many references: cannot splice
- 145    E ETIMEDOUT (Solaris), connection timed out
- 146    E ECONNREFUSED (Solaris), connection refused
- 147    E EHOSTDOWN (Solaris), host is down
- 148    E EHOSTUNREACH (Solaris), no route to host
- 149    E EALREADY (Solaris), operation already in progress
- 150    E EINPROGRESS (Solaris), operation now in progress
- 151    E ESTALE (Solaris), stale NFS file handle
+0144    E ETOOMANYREFS (Solaris), too many references: cannot splice
+0145    E ETIMEDOUT (Solaris), connection timed out
+0146    E ECONNREFUSED (Solaris), connection refused
+0147    E EHOSTDOWN (Solaris), host is down
+0148    E EHOSTUNREACH (Solaris), no route to host
+0149    E EALREADY (Solaris), operation already in progress
+0150    E EINPROGRESS (Solaris), operation now in progress
+0151    E ESTALE (Solaris), stale NFS file handle
 *
 * FreeBSD variances
 * 11    E EDEADLK (FreeBSD), Resource deadlock avoided
@@ -363,6 +363,8 @@
 * -2    E EJUSTRETURN (FreeBSD), don't modify regs, just return
 * -3    E ENOIOCTL (FreeBSD), ioctl not handled by this layer
 * -4    E EDIRIOCTL (FreeBSD), do direct ioctl in GEOM
+*
+*#FPLTCQ1015E ERRNO 60: ETIMEDOUT
 *
 *       E EAGAIN EWOULDBLOCK  Operation would block                       CYG
 *       E EAGAIN EWOULDBLOCK                                              SOL
