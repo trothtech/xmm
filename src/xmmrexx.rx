@@ -1,7 +1,7 @@
 #!/usr/bin/env regina
 /*
  *        Name: xmmrexx.rx (Rexx script)
- *              demonstrate the message handler called from Rexx
+ *              demonstrate the message formatter called from Rexx
  *        Date: 2023-04-12 (Wed) 
  *    See also: xmmrexx.sh, xmmdemoc.c, MessageDemo.java
  *
@@ -16,13 +16,13 @@
 Parse Source sys . fn .
 If sys = "CMS" Then nl = '15'x
 Else Do
-  Parse Value RxFuncAdd('xmm','xmmrexx','RxXmitmsgX') With rc rs
+  Parse Value RxFuncAdd('xmm','xmmrexx','XMMRX') With rc rs
   If rc <> 0 Then Signal LoadFailed
   nl = '0A'x
 End
 
 /* announce the sample and language, also message number 205 (below)  */
-Say "Message Handler demonstration program in Rexx"
+Say "Message Formatter demonstration program in Rexx"
 
 /* the "VERSION" subfunction can be called at any time w/w/o INIT     */
 Parse Value xmm("VERSION") With rc rs
@@ -30,7 +30,7 @@ If rs <> "" Then Say rs
 If rc <> 0 Then Signal CallFailed
 
 /* initialize the messages file of interest */
-Parse Value xmm("INIT","xmitmsgx","options") with rc rs
+Parse Value xmm("INIT","xmitmsgx","") with rc rs    /* ignore 3rd arg */
 If rc <> 0 Then Signal CallFailed
 
 /* Hello, World! */
@@ -79,14 +79,17 @@ Return
 /* ---------------------------------------------------------------------
  */
 LoadFailed:
-Say "### load failed! RC =" rc "###"
+Say "### load failed: RC =" rc "###"
+Say "###" RxFuncErrMsg() "###"
 If rs <> "" Then Say "###" rs "###"
 Exit rc
 
 /* ---------------------------------------------------------------------
  */
 CallFailed:
-Say rs
+Say "### call failed: RC =" rc "###"          
+Say "###" RxFuncErrMsg() "###"
+If rs <> "" Then Say "###" rs "###"                
 Exit rc
 
 

@@ -29,31 +29,86 @@ int main(int argc,char*argv[])
   {
     int rc, msgn, msgc, i, j, n;
     /* unsigned */
-    char *applid, *caller, *letter, buffer[256], *msgv[MSGMAX];
+    char *applid, *caller, *letter, buffer[256], *msgv[MSGMAX], *arg0;
     /* if only we could always treat all char as unsigned             */
     struct MSGSTRUCT ts, *ms;
 
     /* establish some defaults */
+    arg0 = argv[0];
     msgv[0] = applid = "xmitmsgx";
     letter = caller = "";
     ms = &ts;
 
 /*  perror("perror()");                                               */
 
-    /* parse command options */
-    for (n = 1; n < argc && argv[n][0] == '-'; n++)
-      {
-        if (strcasecmp(argv[n],"--applid") == 0)
-          { if (++n < argc) applid = argv[n]; } else
-        if (strcasecmp(argv[n],"--caller") == 0)
-          { if (++n < argc) caller = argv[n]; } else
-        if (strcasecmp(argv[n],"--letter") == 0)
-          { if (++n < argc) letter = argv[n]; } else
-        /* unknown option ** msgn = 3; msgv[1] = argv[n]             */
-          { xmopen("xmitmsgx",0,NULL); msgv[1] = argv[n];
-            (void) xmprint(3,2,msgv,0,NULL);
-            (void) xmclose(NULL); return 1; }
+
+
+    /* process command-line options                                   */
+    for (n = 1; n < argc && argv[n][0] == '-' &&
+                            argv[n][1] != 0x00; n++)
+      { switch (argv[n][1])
+          { case '?':                   /* help                       */
+                break;
+
+            case 'v': case 'V':                          /* --version */
+                  { int vv, rr, mm;
+                    vv =  XMITMSGX_VERSION >> 24;
+                    rr = (XMITMSGX_VERSION >> 16) & 0xFF;
+                    mm = (XMITMSGX_VERSION >> 8)  & 0xFF;
+                    fprintf(stderr,"%s: XMM %d.%d.%d\n",arg0,vv,rr,mm);
+                    return 0; }                /* exit from help okay */
+                break;
+
+            case 'a': case 'A':                           /* --applid */
+                if (++n < argc) applid = argv[n];
+                break;
+
+            case 'c': case 'C':                           /* --caller */
+                if (++n < argc) caller = argv[n];
+                break;
+
+            case 'l': case 'L':                           /* --letter */
+                if (++n < argc) letter = argv[n];
+                break;
+
+/* ------------------------------------------------------------------ */
+            case '-':                          /* long format options */
+
+/*              if (abbrev("--version",argv[i],5) > 0)                */
+                if (strcasecmp(argv[n],"--version") == 0)
+                  { int vv, rr, mm;
+                    vv =  XMITMSGX_VERSION >> 24;
+                    rr = (XMITMSGX_VERSION >> 16) & 0xFF;
+                    mm = (XMITMSGX_VERSION >> 8)  & 0xFF;
+                    fprintf(stderr,"%s: XMM %d.%d.%d\n",arg0,vv,rr,mm);
+                    return 0; } else           /* exit from help okay */
+
+                if (strcasecmp(argv[n],"--applid") == 0)
+                  { if (++n < argc) applid = argv[n]; } else
+
+                if (strcasecmp(argv[n],"--caller") == 0)
+                  { if (++n < argc) caller = argv[n]; } else
+
+                if (strcasecmp(argv[n],"--letter") == 0)
+                  { if (++n < argc) letter = argv[n]; } else
+
+                /* "unknown option"; msgn = 3; msgv[1] = argv[n];     */
+                  { xmopen("xmitmsgx",0,NULL); msgv[1] = argv[n];
+                    rc = xmprint(3,2,msgv,0,NULL);
+                    if (rc < 0) fprintf(stderr,"%s: invalid option %s\n",arg0,argv[n]);
+                    xmclose(NULL); return 1; }
+                break;
+/* ------------------------------------------------------------------ */
+
+            default: /* "unknown option"; msgn = 3; msgv[1] = argv[n] */
+                xmopen("xmitmsgx",0,NULL); msgv[1] = argv[n];
+                rc = xmprint(3,2,msgv,0,NULL);
+                if (rc < 0) fprintf(stderr,"%s: invalid option %s\n",arg0,argv[n]);
+                xmclose(NULL); return 1;
+          }
       }
+
+
 
 /*  msgn = atoi(argv[n++]);     ** wait, not even sure we have it yet */
     msgc = argc - n;
@@ -110,7 +165,6 @@ if (rc == 0)
 
     return 0;
   }
-
 
 /*
 
@@ -173,4 +227,5 @@ encounters an error when it attempts to retrieve the requested message.
 *  DMS2045E Invalid substitution value - blank or parenthesis [RC=24]
 
  */
+
 

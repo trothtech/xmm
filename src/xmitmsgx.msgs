@@ -47,10 +47,11 @@
  202    I &1 signing on
  203    I success
  204    I XMITMSG version &1
- 205    I Message Handler demonstration program in &1
+ 205    I Message Formatter demonstration program in &1
+ 211    I The Message Formatter appears to not be properly installed.
 *
- 301    E message handler structure not yet initialized
- 302    E message handler structure already initialized
+ 301    E message formatter structure not yet initialized
+ 302    E message formatter structure already initialized
  384    E Missing modifier keyword(s).
  386    E Missing operand(s).
  388    E Invalid keyword: &1

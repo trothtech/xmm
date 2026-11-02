@@ -5,7 +5,7 @@
  *        Date: 2023-04-10 (Mon) Choirzilla Studio
  *    See also: xmmrexx.rx
  *
- * Enable with: Call Rxfuncadd 'xmitmsgx', 'xmmrexx', 'RxXmitmsgX'
+ * Enable with: Call Rxfuncadd 'xmitmsgx', 'xmmrexx', 'XMMRX'
  *                              funcname,   library,   entryname
  *   Call with: Parse Value xmitmsgx(subfunction,args,...) With rc rs
  *
@@ -15,6 +15,10 @@
  *              cc -shared -o libxmmrexx.so xmmrexx.o
  *              ... on Linux, varies elsewhere
  *
+ *        Note: This interface is a separate compilation uint
+ *              because it requires rexxsaa.h which other modules
+ *              do not need (and might not have available).
+ *
  */
 
 #include <stdio.h>
@@ -23,7 +27,7 @@
 #include <errno.h>
 
 #include "xmitmsgx.h"
-
+char *xmmprefix = PREFIX;
 static struct MSGSTRUCT *rxmsgstruct = NULL;
 
 #define INCL_REXXSAA
@@ -228,8 +232,7 @@ int rxquit(ULONG rxargc, RXSTRING rxargv[],RXSTRING*rxrets)
  *    ->strlength long int                                            *
  *    ->strptr char pointer                                           *
  * ------------------------------------------------------------------ */
-APIRET APIENTRY
-RxXmitmsgX(CONST CHAR *name,
+APIRET APIENTRY XMMRX(CONST UCHAR *name,
            ULONG rxargc, RXSTRING rxargv[],
            CONST UCHAR *queuename, RXSTRING *retstr)
   {
@@ -274,7 +277,7 @@ RxXmitmsgX(CONST CHAR *name,
         rc = rxquit(rxargc,rxargv,&rxrets);
         if (rc > 0) rc = 0 - rc;       /* force errors to be negative */
         break;
-      case 'V': case 'v': /* quit */
+      case 'V': case 'v': /* version */
         rxrets.strptr = rsdata; rxrets.strlength = sizeof(rsdata) - 1;
         rc = rxversion(rxargc,rxargv,&rxrets);
         if (rc > 0) rc = 0 - rc;       /* force errors to be negative */

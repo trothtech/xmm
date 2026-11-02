@@ -32,7 +32,9 @@
 #include <ctype.h>
 
 #include "xmitmsgx.h"
-extern char *xmmprefix;       /* install prefix not appliction prefix */
+/* the following is the library install prefix not to be confused     *
+ * with the application prefix or message repository prefix           */
+extern char *xmmprefix;
 
 /* These are the locale environment variables we will interrogate:    */
 char *localevars[] = {
@@ -105,6 +107,7 @@ static struct MSGSTRUCT *msglobal = NULL, msstatic;
 /* --------------------------------------------------------- XM_BASENAME
  *    This routine exists purely because of a segmentation fault
  *    when invoking stock basename() on a recent FreeBSD installation.
+ *
  *    NOTE: this routine is NOT prototyped and not called externally
  */
 char*xm_basename(char*path)
@@ -123,6 +126,7 @@ char*xm_basename(char*path)
  *    Returns: an open file descriptor on success or negative on error
  *    The underlying system calls will have set errno appropriately.
  *    This routine will have set ms->msgfile and ms->applid if success.
+ *
  *    NOTE: this routine is NOT prototyped and not called externally
  */
 int xm_findfile(char*fn0,struct MSGSTRUCT*ms)
@@ -142,26 +146,28 @@ int xm_findfile(char*fn0,struct MSGSTRUCT*ms)
     (void) memset(ms->applid,0x00,sizeof(ms->applid));
     ms->msgmax = 0;
 
+#ifdef _DIRECT_NAME
     /* try the named file directly */
-    stpncpy(filename,fn,sizeof(filename)-1);
+    strncpy(filename,fn,sizeof(filename)-1);
     rc = fd = open(filename,O_RDONLY);
     if (rc >= 0)
       { fn = xm_basename(fn);
         snprintf(ms->applid,sizeof(ms->applid),"%s",fn);
         /* NOTE: in this case the locale is not set                   */
         return fd; }
+#endif
 
     /* try the named file + ".msgs" */
     snprintf(filename,sizeof(filename)-1,"%s.msgs",fn);
     rc = fd = open(filename,O_RDONLY);
     if (rc >= 0)
       { fn = xm_basename(fn);
-        stpncpy(ms->applid,fn,sizeof(ms->applid));
+        strncpy(ms->applid,fn,sizeof(ms->applid));
         /* NOTE: in this case the locale is not set                   */
         return fd; }
 
     fn = xm_basename(fn);     /* beyond this point fn *is* the applid */
-    stpncpy(ms->applid,fn,sizeof(ms->applid));    /* set it in struct */
+    strncpy(ms->applid,fn,sizeof(ms->applid));    /* set it in struct */
 
     /* try the named file with any locale value */
     i = 0; while (*localevars[i] != 0x00)      /* localevars loop top */
@@ -169,7 +175,7 @@ int xm_findfile(char*fn0,struct MSGSTRUCT*ms)
         lc = getenv(localevars[i++]);
         if (lc == NULL) continue;       /* skip all unset locale vars */
         if (*lc == 0x00) continue;       /* skip empty locale strings */
-        stpncpy(ms->locale,lc,sizeof(ms->locale));        /* pass one */
+        strncpy(ms->locale,lc,sizeof(ms->locale));        /* pass one */
 
         /* try various combinations of named file + locale + ".msgs"  */
         snprintf(filename,sizeof(filename)-1,"%s.%s.msgs",fn,ms->locale);
@@ -203,7 +209,7 @@ int xm_findfile(char*fn0,struct MSGSTRUCT*ms)
         lc = getenv(localevars[i++]);
         if (lc == NULL) continue;       /* skip all unset locale vars */
         if (*lc == 0x00) continue;       /* skip empty locale strings */
-        stpncpy(ms->locale,lc,sizeof(ms->locale));        /* pass two */
+        strncpy(ms->locale,lc,sizeof(ms->locale));        /* pass two */
 
         j = 0; while (*localeoptd[j] != 0x00)  /* localeOPTD loop top */
           { snprintf(filename,sizeof(filename)-1,localeoptd[j++],xmmprefix,ms->locale,fn);
@@ -254,7 +260,7 @@ int xm_findfile(char*fn0,struct MSGSTRUCT*ms)
       }                                        /* localevars loop end */
 
     /* possibly try hard coded "C" or "POSIX" here */
-    lc = "C"; stpncpy(ms->locale,lc,sizeof(ms->locale));
+    lc = "C"; strncpy(ms->locale,lc,sizeof(ms->locale));
     j = 0; while (*localeoptd[j] != 0x00)      /* localeOPTD loop top */
       { snprintf(filename,sizeof(filename)-1,localeoptd[j++],xmmprefix,ms->locale,fn);
         rc = fd = open(filename,O_RDONLY);
@@ -265,7 +271,7 @@ int xm_findfile(char*fn0,struct MSGSTRUCT*ms)
         if (rc >= 0) return fd; }              /* localeDIRs loop end */
 
     /* possibly try hard coded "C" or "POSIX" here */
-    lc = "POSIX"; stpncpy(ms->locale,lc,sizeof(ms->locale));
+    lc = "POSIX"; strncpy(ms->locale,lc,sizeof(ms->locale));
     j = 0; while (*localeoptd[j] != 0x00)      /* localeOPTD loop top */
       { snprintf(filename,sizeof(filename)-1,localeoptd[j++],xmmprefix,ms->locale,fn);
         rc = fd = open(filename,O_RDONLY);
@@ -275,7 +281,7 @@ int xm_findfile(char*fn0,struct MSGSTRUCT*ms)
         rc = fd = open(filename,O_RDONLY);
         if (rc >= 0) return fd; }              /* localeDIRs loop end */
 
-    /* if all attempts fail then return an error indication */
+    /* if all attempts fail then return an error indication           */
     ms->msgfile = NULL;
     ms->locale[0] = 0x00;
     ms->applid[0] = 0x00;
@@ -320,7 +326,7 @@ int xmopen(char*fn,int opts,struct MSGSTRUCT*ms)
     rc = fd = xm_findfile(file,ms);   /* find and open the repository */
 
 #ifdef __VM__
-    /* do stuff for VM/CMS in here - cms 'pipe xmmshim'               */
+    /* do stuff for VM/CMS in here - cms 'xmmshim' macro command      */
     ms->msgmax = 9999;         /* CMS handles it so go to four digits */
     ms->escape = NULL;          /* we won't know the escape character */
     ms->msgopts = opts;
@@ -776,12 +782,12 @@ int xm_make_cms(struct MSGSTRUCT*ms)
     checkchars[8] = '&';              /* ampersand means "background" */
     checkchars[9] = 0x00;                   /* NULL marks end of list */
 
-//  char *prefix;       /* default is applid[0..2]||caller[0..2] */
-//  ms->prefix
-//  ms->applid
-//  ms->caller
-//  ms->pfxmaj
-//  ms->pfxmin
+/*  char *prefix;       // default is applid[0..2]||caller[0..2]      */
+/*  ms->prefix                                                     // */
+/*  ms->applid                                                     // */
+/*  ms->caller                                                     // */
+/*  ms->pfxmaj                                                     // */
+/*  ms->pfxmin                                                     // */
 
     /* build a concatenation of all supplied replacement tokens       */
     j = 0;
@@ -800,10 +806,11 @@ fprintf(stderr,"looping on '%s' %d\n",p,i);
     /* now drive our shim to invoke XMITMSG command in CMS            */
     p = getenv("SHELL");
     if (p != NULL && *p != 0x00)    /* if we have a shell then use it */
-    sprintf(x2,"cms 'pipe xmmshim %d %s %s %x %d %s'",
+/* __OPEN_VM=1 */
+    sprintf(x2,"cms 'xmmshim %d %s %s %x %d %s'",
             ms->msgnum,ms->pfxmaj,ms->pfxmin,ms->msgbuf,ms->msglen,x1);
     else          /* otherwise go directly to the CMS command handler */
-    sprintf(x2,"pipe xmmshim %d %s %s %x %d %s",
+    sprintf(x2,"xmmshim %d %s %s %x %d %s",
             ms->msgnum,ms->pfxmaj,ms->pfxmin,ms->msgbuf,ms->msglen,x1);
 fprintf(stderr,"%s\n",x2);
     rc = system(x2);

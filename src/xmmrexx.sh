@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 #         Name: xmmrexx.sh (shell script)
-#               demonstrate the message handler called from Java
+#               demonstrate the message formatter called from Java
 #         Date: 2023-07-21 (Fri)
 #
 
